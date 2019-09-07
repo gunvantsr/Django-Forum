@@ -8,7 +8,12 @@
 <div class="row">
 <div class="card ml-4" style="width: 500px;">
     <div class="card-header">
-        Posted By: {{post.author}} On {{post.date_posted}} in {{post.category.name}}
+        Posted By: <a href="{% url 'profile' post.author %}"> {{post.author}} 
+        </a> 
+        On {{post.date_posted}} in 
+        <a href="{% url 'category' post.category.name %}"> 
+            {{post.category.name}}
+        </a>
     </div>
     <img class="card-img-top" src="{{ post.thumbnail_img.url }}" alt="Card image cap" style="width: 500px; height:200px">
     <div class="card-body">
