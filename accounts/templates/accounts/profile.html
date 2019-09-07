@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="position-fixed">
+        <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle" style="height: 200px; width:200px">
+        <h3> @{{ user.username }}<span>
+                {% if user.profile.verified %}
+                  <img src="{% static 'badge.png' %}">
+                {% endif %}
+            </span>
+        </h3>
+        <p>{{ user.profile.bio }}</p>
+        <p> Birth Date: {{ user.profile.birthdate }}</p>
+    </div>
+    </div>
+{% endblock content %}

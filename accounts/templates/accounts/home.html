@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+<div class="container">
+    {% block content %}
+        <h3 class="text-center">All Contributors to this project!</h3>
+
+        {% for user in users %}
+        <div class="card col-md-3" style="width: 18rem;">
+            <div class="card-body">
+                <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle" style="height:100px; width:100px">
+              <h5 class="card-title">@{{ user.username }} <span>
+                  {% if user.profile.verified %}
+                    <img src="{% static 'badge.png' %}">
+                  {% endif %}
+              </span></h5>
+              <p class="card-text">{{ user.profile.bio }}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        {% endfor %}
+    {% endblock %}
+</div>
