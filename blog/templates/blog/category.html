@@ -1,23 +1,26 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-{% for post in posts %}
 
-<h1> Post tagged in {{ post.category.name }}</h1>
+<h1 class="align-center">Everything About {{ category }}</h1>
 <div class="row">
-    <div class="card ml-4" style="width: 500px;">
+{% for post in posts %}
+<div class="card ml-3 mb-3" style="width: 400px;">
         <div class="card-header">
-            Posted By: {{post.author}} On {{post.date_posted}} in 
-            <a href="{% url 'category' post.category.name %}">
-                 {{ post.category.name }}
+            Posted By: <a href="{% url 'profile' post.author %}"> {{post.author}} 
+            </a> 
+            On {{post.date_posted}} in 
+            <a href="{% url 'category' post.category.name %}"> 
+                {{post.category.name}}
             </a>
         </div>
-        <img class="card-img-top" src="{{ post.thumbnail_img.url }}" alt="Card image cap" style="width: 500px; height:200px">
+        <img class="card-img-top" src="{{ post.thumbnail_img.url }}" alt="Card image cap" style="width: 400px; height:200px">
         <div class="card-body">
             <h5 class="card-title"><a href="{% url 'post-detail' post.id %}"> {{post.title}}</a></h5>
             <p class="card-text">{{post.content|slice:255}}</p>
             <a href="{% url 'post-detail' post.id %}" class="btn btn-outline-primary">Read More</a>
         </div>
     </div>
-
+{%endfor%}
+</div>
 {% endblock %}

@@ -77,8 +77,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return False
     
 def category_post(request, category):
-    posts = Post.objects.get(category=category)
-    return render(request, 'blog/category.html', {'posts': posts})
+    posts = Post.objects.filter(category__name=category)
+    catgory_name = category
+    return render(request, 'blog/category.html', {'posts': posts, 'category': catgory_name})
     
     
 
