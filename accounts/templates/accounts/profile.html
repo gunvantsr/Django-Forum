@@ -2,17 +2,30 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="position-fixed">
-        <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle" style="height: 200px; width:200px">
-        <h3> @{{ user.username }}<span>
-                {% if user.profile.verified %}
-                  <img src="{% static 'badge.png' %}">
-                {% endif %}
-            </span>
-        </h3>
-        <p>{{ user.profile.bio }}</p>
-        <p> Birth Date: {{ user.profile.birthdate }}</p>
-    </div>
-    </div>
-{% endblock content %}
+<div class=" container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="position-fixed">
+                <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle" style="height: 200px; width:200px">
+                <h3> @{{ user.username }}<span>
+                        {% if user.profile.verified %}
+                        <img src="{% static 'badge.png' %}">
+                        {% endif %}
+                    </span>
+                </h3>
+                <p>{{ user.profile.bio }}</p>
+                <p> Birth Date: {{ user.profile.birthdate }}</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2>Post written by {{user.first_name}}</h2>
+            {% for post in userposts %}
+            <h4>
+                <a href="{% url 'post-detail' post.id %}">
+                    {{ post.title }}
+                </a>
+            {% endfor %}
+            </h4>
+        </div>
+        </div>
+        {% endblock content %}
