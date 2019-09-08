@@ -9,7 +9,7 @@
                 <img src="{{ user.profile.profile_pic.url }}" class="rounded-circle" style="height: 200px; width:200px">
                 <h3> @{{ user.username }}<span>
                         {% if user.profile.verified %}
-                        <img src="{% static 'badge.png' %}">
+                        <img src="{% static 'badge.png' %}" style="height: 20px; width: 20px;" alt="Verified Profile">
                         {% endif %}
                     </span>
                 </h3>
